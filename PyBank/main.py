@@ -1,24 +1,26 @@
 import os
 import csv
 
-totalMonths = 0
+budget_path = "Resources/budget_data.csv"
 
-with open("c:/Users/Tiaan/Homework/03-Python/python-challenge/PyBank/Resources/budget_data.csv") as file1:
-    count = 0
+with open(budget_path, "r") as csvfile:
+    csvreader = csv.reader(csvfile, delimiter=",")
+    header = next(csvreader)
+    print (header)
+    totalMonths = 0    
+    count = 1
     totalProfitLoss = 0
     totalChange = 0
-    file1.readline()
     max = 0
     min = 0
     maxMonth = ""
     lastProfitLoss = 0
-    while True: 
-        line = file1.readline()
-        col = line.split(",")
-        if len(col) < 2:
+    for row in csvreader:
+        if len(row) < 2:
             break
-        thismonth = col[0]
-        profitLoss = int(col[1])
+        thismonth = row[0]
+        profitLoss = int(row[1])
+
         changeProfitLoss = profitLoss - lastProfitLoss
         if changeProfitLoss > max:
             max = changeProfitLoss 
