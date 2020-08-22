@@ -35,12 +35,12 @@ with open(budget_path, "r") as csvfile:
         lastProfitLoss = profitLoss
   
 totalMonths=count-1
-averageChange = (max - min) / (totalMonths-1) 
+averageChange = (totalChange - changeProfitLoss) / (totalMonths * -1)
 print("Financial Analysis")
 print("----------------------------")
 print("Total Months: " +str(totalMonths))
 print("Total: $" + str(totalProfitLoss))
-print("Average Change: $" + str(averageChange))
+print("Average Change: $" + str(round(averageChange, 2)))
 print("Greatest Increase in Profits: "+maxMonth+" ($" + str(max) + ")")
 print("Greatest Decrease in Profits: "+minMonth+" ($" + str(min) + ")")
 
